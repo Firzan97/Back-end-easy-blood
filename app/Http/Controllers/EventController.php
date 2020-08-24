@@ -14,8 +14,8 @@ class EventController extends Controller
      */
     public function index()
     {
+
         return Event::all();
-        return view('events.index');
     }
 
     /**
@@ -23,19 +23,13 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
         $data = new Event();
-        $data->name = "Jom Derma Darah";
-        $data->phoneNum = "019-2351520";
-        $data->location = "Tumpat";
-        $data->dateStart = "28/02/1997";
-        $data->dateEnd = "28/02/1997";
-        $data->time = "9am-10am";
-        $data->id = "9";
-
-        return $data;
+        $data->name = $request->name;
+        $data->location = $request->location;
+        $data->save();
     }
 
     /**

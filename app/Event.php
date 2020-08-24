@@ -8,6 +8,6 @@ class Event extends Model
 {
     //
     protected $collection = 'events';
-    protected $primaryKey = 'id';
+    // protected $primaryKey = 'id';
     protected $connection = 'mongodb';
 }
