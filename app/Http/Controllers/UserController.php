@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
+use JWTAuth;
 
 class UserController extends Controller
 {
@@ -27,14 +29,34 @@ class UserController extends Controller
     public function create(Request $request)
     {
         //
-        $data = new User();
-        $data->email = $request->email;
-        $data->username = $request->username;
-        $data->password = $request->password;
-        $data->age = $request->age;
-        $data->save();
+        $plainPassword = $request->password;
+
+        // create the user account 
+        $created = User::create($request->all());
+        $request->request->add(['password' => $plainPassword]);
+        // login now..
+        return $this->login($request);
     }
 
+    public function login(Request $request)
+    {
+        $input = $request->only('email', 'password');
+        $jwt_token = null;
+        if (!$jwt_token = JWTAuth::attempt($input)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid Email or Password',
+            ], 401);
+        }
+        // get the user 
+        $user = Auth::user();
+
+        return response()->json([
+            'success' => true,
+            'token' => $jwt_token,
+            'user' => $user
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      *

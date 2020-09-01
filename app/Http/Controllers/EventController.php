@@ -29,6 +29,7 @@ class EventController extends Controller
         $data = new Event();
         $data->name = $request->name;
         $data->location = $request->location;
+        $data->phoneNum = $request->phoneNum;
         $data->save();
     }
 

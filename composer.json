@@ -14,7 +14,9 @@
         "guzzlehttp/guzzle": "^6.3",
         "jenssegers/mongodb": "4.0.0-alpha.1",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^2.2",
+        "tymon/jwt-auth": "^1.0.0-beta.3@dev"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

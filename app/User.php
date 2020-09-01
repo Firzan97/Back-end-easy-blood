@@ -6,9 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Support\Facades\Hash;
+use JWTAuth;
+
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
-class User extends Eloquent
+class User extends Authenticatable implements JWTSubject
 {
 
     use Notifiable;
@@ -20,7 +24,7 @@ class User extends Eloquent
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username', 'age', 'bloodType'
     ];
 
     /**
@@ -40,4 +44,36 @@ class User extends Eloquent
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+    public static function checkToken($token)
+    {
+        if ($token->token) {
+            return true;
+        }
+        return false;
+    }
+    public static function getCurrentUser($request)
+    {
+        if (!User::checkToken($request)) {
+            return response()->json([
+                'message' => 'Token is required'
+            ], 422);
+        }
+
+        $user = JWTAuth::parseToken()->authenticate();
+        return $user;
+    }
 }
