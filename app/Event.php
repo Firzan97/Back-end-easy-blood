@@ -11,6 +11,6 @@ class Event extends Model
     // protected $primaryKey = 'id';
     protected $connection = 'mongodb';
     protected $fillable = [
-        'name', 'location', 'phoneNum', 'dateStart', 'dateEnd', 'organizer', 'time', 'imageURL'
+        'name', 'location', 'phoneNum', 'dateStart', 'dateEnd', 'organizer', 'timeStart', 'timeEnd', 'imageURL'
     ];
 }
