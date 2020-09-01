@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
-
+use App\Event;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 

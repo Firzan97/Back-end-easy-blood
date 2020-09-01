@@ -21,7 +21,8 @@ class CreateEventsTable extends Migration
             $table->date("dateStart");
             $table->date("dateEnd");
             $table->String("organizer");
-            $table->string("time");
+            $table->dateTime("timeStart");
+            $table->dateTime("timeEnd");
             $table->string("imageURL");
             $table->foreignId("user_id");
         });

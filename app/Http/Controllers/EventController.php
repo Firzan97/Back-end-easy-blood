@@ -26,11 +26,7 @@ class EventController extends Controller
     public function create(Request $request)
     {
         //
-        $data = new Event();
-        $data->name = $request->name;
-        $data->location = $request->location;
-        $data->phoneNum = $request->phoneNum;
-        $data->save();
+        $created = Event::create($request->all());
     }
 
     /**
