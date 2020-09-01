@@ -76,4 +76,8 @@ class User extends Authenticatable implements JWTSubject
         $user = JWTAuth::parseToken()->authenticate();
         return $user;
     }
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
 }

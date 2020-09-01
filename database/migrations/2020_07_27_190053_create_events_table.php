@@ -20,7 +20,9 @@ class CreateEventsTable extends Migration
             $table->string("phoneNum");
             $table->date("dateStart");
             $table->date("dateEnd");
+            $table->String("organizer");
             $table->string("time");
+            $table->string("imageURL");
             $table->foreignId("user_id");
         });
     }
