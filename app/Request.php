@@ -10,6 +10,6 @@ class Request extends Model
     // protected $primaryKey = 'id';
     protected $connection = 'mongodb';
     protected $fillable = [
-        'location', 'bloodGroup', 'reason', 'user_id'
+        'location', 'bloodType', 'reason', 'user_id'
     ];
 }
