@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Request as Req;
 
 class RequestController extends Controller
 {
@@ -25,7 +26,9 @@ class RequestController extends Controller
     public function create(Request $request)
     {
         //
-        $created = Request::create($request->all());
+
+
+        $created = Req::create($request->all());
     }
 
     /**
