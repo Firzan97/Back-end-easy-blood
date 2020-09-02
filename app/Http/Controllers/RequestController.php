@@ -14,6 +14,7 @@ class RequestController extends Controller
     public function index()
     {
         //
+        return Index::all();
     }
 
     /**
@@ -24,6 +25,7 @@ class RequestController extends Controller
     public function create()
     {
         //
+        $created = Request::create($request->all());
     }
 
     /**
