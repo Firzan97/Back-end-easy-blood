@@ -15,8 +15,9 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->timestamps();
+            $table->string("location");
             $table->string("bloodType");
-            $table->string("reqNumber");
+            $table->string("reason");
             $table->foreignId("user_id");
         });
     }

@@ -14,7 +14,7 @@ class RequestController extends Controller
     public function index()
     {
         //
-        return Index::all();
+        return Request::all();
     }
 
     /**
@@ -22,7 +22,7 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
         $created = Request::create($request->all());

@@ -22,5 +22,5 @@ Route::post('/user', 'UserController@create');
 Route::get('/user', 'UserController@index');
 Route::post('/event', 'EventController@create');
 Route::get('/event', 'EventController@index');
-Route::post('/request', 'EventRequest@create');
-Route::get('/request', 'EventRequest@index');
+Route::post('/request', 'RequestController@create');
+Route::get('/request', 'RequestController@index');
