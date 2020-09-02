@@ -6,7 +6,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 
 class Request extends Model
 {
-    protected $collection = 'request';
+    protected $collection = 'requests';
     // protected $primaryKey = 'id';
     protected $connection = 'mongodb';
     protected $fillable = [
