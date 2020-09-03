@@ -100,6 +100,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::find($id);
+
+        $user->imageURL = $request->name;
+
+        $user->save();
     }
 
     /**

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', 'UserController@login');
 Route::post('/user', 'UserController@create');
 Route::get('/user', 'UserController@index');
+Route::put('/user/{id}', 'UserController@update');
 Route::post('/event', 'EventController@create');
 Route::get('/event', 'EventController@index');
 Route::post('/request', 'RequestController@create');
