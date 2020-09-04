@@ -37,7 +37,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //sasas
     }
 
     /**
