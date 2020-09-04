@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use JWTAuth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -100,11 +101,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $image = $request->image; //base64 string
+        $file_path = 'product/' . rand() . time() . '.jpg';
+        Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
+
         $user = User::find($id);
-
-        $user->imageURL = $request->name;
-
+        $user->imageURL = Storage::disk('s3')->url($file_path);
         $user->save();
+        return Storage::disk('s3')->url($file_path);
     }
 
     /**
