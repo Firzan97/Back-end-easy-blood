@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Event;
-use Illuminate\Support\Facades\Storage;
+use App\Job;
 
-class EventController extends Controller
+class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,33 +14,19 @@ class EventController extends Controller
      */
     public function index()
     {
-
-        return Event::with('user')->get();
-    }
-    public function userEvent($id)
-    {
         //
-        return Event::where('user_id', $id)
-            ->get();
+
     }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         //
-        $image = $request->image; //base64 string
-        $file_path = 'event/' . rand() . time() . '.jpg';
-        Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
-
-
-        $imageURL = Storage::disk('s3')->url($file_path);
-        $request->merge([
-            'imageURL' => $imageURL,
-        ]);
-        $event = Event::create($request->all());
+        return view('job.job_create');
     }
 
     /**
@@ -52,7 +37,9 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //sasas
+        //
+        $created = Job::create($request->all());
+        return view('job.job_create');
     }
 
     /**

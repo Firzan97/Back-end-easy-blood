@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         //
         $users = User::all();
-        return $users;
+        return $users->load('events');
     }
 
     /**
@@ -78,6 +78,8 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $user = User::find($id);
+        return $user;
     }
 
     /**
@@ -101,15 +103,25 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-
-        $image = $request->image; //base64 string
-        $file_path = 'product/' . rand() . time() . '.jpg';
-        Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
-
         $user = User::find($id);
-        $user->imageURL = Storage::disk('s3')->url($file_path);
+        if ($request->image != "") {
+            $image = $request->image; //base64 string
+            $file_path = 'profile/{$id}/' . rand() . time() . '.jpg';
+            Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
+
+            $user->imageURL = Storage::disk('s3')->url($file_path);
+        }
+
+
+        $user->latitude = $request->latitude;
+        $user->longitude = $request->longitude;
+        $user->height = $request->height;
+        $user->weight = $request->weight;
+        $user->phoneNumber = $request->phoneNumber;
+        $user->bloodType = $request->bloodType;
+        $user->gender = $request->gender;
         $user->save();
-        return Storage::disk('s3')->url($file_path);
+        // return Storage::disk('s3')->url($file_path);
     }
 
     /**

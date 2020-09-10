@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Request as Req;
+use App\User as User;
 
 class RequestController extends Controller
 {
@@ -15,7 +16,14 @@ class RequestController extends Controller
     public function index()
     {
         //
-        return Req::all();
+        return Req::with('user')->get();
+    }
+
+    public function userRequest($id)
+    {
+        //
+        return Req::where('user_id', $id)
+            ->get();
     }
 
     /**
@@ -85,5 +93,10 @@ class RequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function findDonor(Request $request)
+    {
+        //
+
     }
 }

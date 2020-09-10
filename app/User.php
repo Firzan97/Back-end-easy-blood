@@ -80,4 +80,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Event');
     }
+    public function requests()
+    {
+        return $this->hasMany('App\Request');
+    }
 }

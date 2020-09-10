@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->double('latitude');
             $table->double('longitude');
             $table->string('imageURL');
+            $table->double('weight');
+            $table->double('height');
             $table->string('role');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
