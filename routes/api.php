@@ -29,3 +29,4 @@ Route::post('/request', 'RequestController@create');
 Route::get('/request', 'RequestController@index');
 Route::get('user/{id}/request', 'RequestController@userRequest');
 Route::get('/findDonor', 'RequestController@findDonor');
+Route::delete('/event/{id}', 'EventController@destroy');
