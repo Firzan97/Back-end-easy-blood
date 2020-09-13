@@ -94,7 +94,7 @@ class RequestController extends Controller
     {
         //
     }
-    public function findDonor(Request $request)
+    public function addFact(Request $request)
     {
         //
 
