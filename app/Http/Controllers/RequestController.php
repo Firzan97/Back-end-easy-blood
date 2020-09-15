@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Request as Req;
 use App\User as User;
+use App\Http\Controllers\FactController;
+use App\Http\Controllers\UserController;
 
 class RequestController extends Controller
 {
@@ -13,6 +15,13 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $UserController;
+    public function __construct(UserController $UserController)
+    {
+        $this->UserController = $UserController;
+    }
+
     public function index()
     {
         //
@@ -97,6 +106,16 @@ class RequestController extends Controller
     public function addFact(Request $request)
     {
         //
-
+        // $blood = $request->bloodType;
+        // $userInfo = $this->UserController->show($user_id);
+        // $age = $userInfo->age;
+        // $gender = $userInfo->gender;
+        // $pregnant = $userInfo->pregnant;
+        // $last_pregnant = $userInfo->last_pregnant;
+        // $last_donate = $userInfo->last_donate;
+        // $have_deasese = $userInfo->have_deasese;
+        // $weight = $userInfo->weight;
+        // $facts = array($blood, $age, $gender, $pregnant, $last_pregnant, $last_donate, $have_disease, $weight);
+        $this->FactController->setFacts($request);
     }
 }
