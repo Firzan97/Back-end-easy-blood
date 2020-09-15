@@ -31,3 +31,4 @@ Route::get('user/{id}/request', 'RequestController@userRequest');
 Route::get('/findDonor', 'RequestController@findDonor');
 Route::delete('/event/{id}', 'EventController@destroy');
 Route::delete('/user/{id}', 'UserController@destroy');
+Route::delete('/request/{id}', 'RequestController@destroy');

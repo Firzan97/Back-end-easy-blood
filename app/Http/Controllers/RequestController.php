@@ -102,6 +102,7 @@ class RequestController extends Controller
     public function destroy($id)
     {
         //
+        Req::destroy($id);
     }
     public function addFact(Request $request)
     {
