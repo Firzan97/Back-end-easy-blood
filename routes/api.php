@@ -32,3 +32,5 @@ Route::get('/findDonor', 'RequestController@findDonor');
 Route::delete('/event/{id}', 'EventController@destroy');
 Route::delete('/user/{id}', 'UserController@destroy');
 Route::delete('/request/{id}', 'RequestController@destroy');
+Route::post('/notification', 'NotificationController@sendNotification');
+Route::get('/notification', 'NotificationController@sendNotification');
