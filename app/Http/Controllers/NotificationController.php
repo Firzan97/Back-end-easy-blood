@@ -21,7 +21,7 @@ class NotificationController extends Controller
         ";
         $fcmURL = "https://fcm.googleapis.com/fcm/send";
 
-        $token =  $request->token;
+        $token =  "cmjBsMciTXevMAspkKWAY6:APA91bGQcbVHevCzpUe-UeyiRMF-YdAP__MxMTc-fuxowekBvYvNIy16LAsxKS9VlKoSDguAj31XpvK8AIzVK6uGy6lWeI_CkMmLNjJtkogG7nf9_1g9PLfj1kvCpQkn5dyoAnIVWCi6";
 
 
         $notification = [
@@ -37,7 +37,7 @@ class NotificationController extends Controller
             //'registration_ids' => $tokenList, //multple token array
             'to'        => $token,
             'notification' => $notification,
-            'data' => $extraNotificationData
+            // 'data' => $extraNotificationData
         ];
 
         $headers = [
@@ -55,6 +55,6 @@ class NotificationController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         curl_close($ch);
-        echo $result;
+        echo json_encode($fcmNotification);
     }
 }
