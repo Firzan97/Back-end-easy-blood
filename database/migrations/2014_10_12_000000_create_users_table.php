@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->double('weight');
             $table->double('height');
             $table->string('role');
+            $table->string('notificationToken');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

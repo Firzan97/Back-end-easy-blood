@@ -21,7 +21,7 @@ class NotificationController extends Controller
         ";
         $fcmURL = "https://fcm.googleapis.com/fcm/send";
 
-        $token =  "cmjBsMciTXevMAspkKWAY6:APA91bGQcbVHevCzpUe-UeyiRMF-YdAP__MxMTc-fuxowekBvYvNIy16LAsxKS9VlKoSDguAj31XpvK8AIzVK6uGy6lWeI_CkMmLNjJtkogG7nf9_1g9PLfj1kvCpQkn5dyoAnIVWCi6";
+        $token = $request->token;
 
 
         $notification = [
