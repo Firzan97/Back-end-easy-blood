@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -35,7 +36,7 @@ class NotificationController extends Controller
 
         $fcmNotification = [
             //'registration_ids' => $tokenList, //multple token array
-            'to'        => $token,
+            'registration_ids'        => $token,
             'notification' => $notification,
             // 'data' => $extraNotificationData
         ];
@@ -60,5 +61,12 @@ class NotificationController extends Controller
         $result = curl_exec($ch);
         curl_close($ch);
         echo json_encode($fcmNotification);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->notificationToken = $request->notificationToken;
+        $user->save();
     }
 }

@@ -120,6 +120,7 @@ class UserController extends Controller
         $user->phoneNumber = $request->phoneNumber;
         $user->bloodType = $request->bloodType;
         $user->gender = $request->gender;
+        $user->notificationToken = $request->notificationToken;
         $user->save();
         // return Storage::disk('s3')->url($file_path);
     }
