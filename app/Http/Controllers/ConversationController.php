@@ -14,6 +14,8 @@ class ConversationController extends Controller
     public function index()
     {
         //
+        $conversation = Conversation::all();
+        return $conversation;
     }
 
     /**
