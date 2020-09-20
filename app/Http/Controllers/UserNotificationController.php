@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UserNotification;
 use Illuminate\Http\Request;
 
 class UserNotificationController extends Controller
@@ -35,6 +36,7 @@ class UserNotificationController extends Controller
     public function store(Request $request)
     {
         //
+        $userNotification = UserNotification::create($request->all());
     }
 
     /**

@@ -2,9 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class UserNotification extends Model
 {
     //
+    protected $fillable = [
+        'user_id', 'notification_id'
+    ];
 }

@@ -35,3 +35,4 @@ Route::delete('/request/{id}', 'RequestController@destroy');
 Route::post('/notification', 'NotificationController@sendNotification');
 Route::get('/notification', 'NotificationController@sendNotification');
 Route::put('/user/{id}/notification', 'NotificationController@update');
+Route::post('/userNotification', 'UserNotificationController@store');
