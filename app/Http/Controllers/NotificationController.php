@@ -9,7 +9,10 @@ class NotificationController extends Controller
 {
     //
 
-
+    public function store(Request $request)
+    {
+        //
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -68,5 +71,11 @@ class NotificationController extends Controller
         $user = User::find($id);
         $user->notificationToken = $request->notificationToken;
         $user->save();
+    }
+
+    public function show($id)
+    {
+        //
+
     }
 }

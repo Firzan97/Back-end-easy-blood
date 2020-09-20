@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\UserNotification;
 use Illuminate\Http\Request;
 
@@ -48,6 +49,9 @@ class UserNotificationController extends Controller
     public function show($id)
     {
         //
+        //
+        return UserNotification::where('user_id', $id)
+            ->get();
     }
 
     /**

@@ -9,6 +9,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use App\Event;
+use App\UserNotification;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
@@ -84,5 +85,9 @@ class User extends Authenticatable implements JWTSubject
     public function requests()
     {
         return $this->hasMany('App\Request');
+    }
+    public function userNotifications()
+    {
+        return $this->hasMany('App\UserNotification');
     }
 }
