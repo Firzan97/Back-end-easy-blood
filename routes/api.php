@@ -37,3 +37,4 @@ Route::get('/notification', 'NotificationController@sendNotification');
 Route::put('/user/{id}/notification', 'NotificationController@update');
 Route::post('/userNotification', 'UserNotificationController@store');
 Route::get('/user/{id}/notification', 'UserNotificationController@show');
+Route::put('/notification/{id}', 'UserNotificationController@update');

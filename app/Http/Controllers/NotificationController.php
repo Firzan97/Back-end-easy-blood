@@ -21,8 +21,7 @@ class NotificationController extends Controller
      */
     public function sendNotification(Request $request)
     {
-        $api_access_key = "AAAAf6i1Frg:APA91bFnmrrzh9atOprB6jlsmlQ6VS7RCICRh1yri9z3ebdmmqt04yvD40jVfYd22Po5llOznxasubyBFThyDvbZhHfEvnm7EuRMsk9BpM67B4WBD1vrtVUHeT2ld8W4z_cUW50ul58P
-        ";
+        $api_access_key = "AAAAf6i1Frg:APA91bFnmrrzh9atOprB6jlsmlQ6VS7RCICRh1yri9z3ebdmmqt04yvD40jVfYd22Po5llOznxasubyBFThyDvbZhHfEvnm7EuRMsk9BpM67B4WBD1vrtVUHeT2ld8W4z_cUW50ul58P";
         $fcmURL = "https://fcm.googleapis.com/fcm/send";
 
         $token = $request->token;
@@ -41,7 +40,7 @@ class NotificationController extends Controller
             //'registration_ids' => $tokenList, //multple token array
             'registration_ids'        => $token,
             'notification' => $notification,
-            // 'data' => $extraNotificationData
+            'data' => $extraNotificationData
         ];
 
         $headers = [

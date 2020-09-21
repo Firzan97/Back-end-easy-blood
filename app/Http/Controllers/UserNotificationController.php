@@ -50,7 +50,7 @@ class UserNotificationController extends Controller
     {
         //
         //
-        return UserNotification::where('user_id', $id)
+        return $userNotification = UserNotification::with('notification')->where('user_id', $id)
             ->get();
     }
 
@@ -75,6 +75,9 @@ class UserNotificationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = UserNotification::find($id);
+        $user->is_read = $request->is_read;
+        $user->save();
     }
 
     /**
