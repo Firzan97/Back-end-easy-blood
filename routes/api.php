@@ -24,6 +24,7 @@ Route::put('/user/{id}', 'UserController@update');
 Route::get('/user/{id}', 'UserController@show');
 Route::post('/event', 'EventController@create');
 Route::get('/event', 'EventController@index');
+Route::put('user/{Userid}/event/{Eventid}', 'EventController@update');
 Route::get('user/{id}/event', 'EventController@userEvent');
 Route::post('/request', 'RequestController@create');
 Route::get('/request', 'RequestController@index');

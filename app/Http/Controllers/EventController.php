@@ -16,7 +16,7 @@ class EventController extends Controller
     public function index()
     {
 
-        return Event::with('user')->get();
+        return Event::all();
     }
     public function userEvent($id)
     {
@@ -32,12 +32,16 @@ class EventController extends Controller
     public function create(Request $request)
     {
         //
-        $image = $request->image; //base64 string
+        $image = $request->image;
+        //base64 string
         $file_path = 'event/' . rand() . time() . '.jpg';
         Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
 
-
-        $imageURL = Storage::disk('s3')->url($file_path);
+        if ($image == null) {
+            $imageURL = "https://easy-blood.s3-ap-southeast-1.amazonaws.com/loadProfileImage.png";
+        } else {
+            $imageURL = Storage::disk('s3')->url($file_path);
+        }
         $request->merge([
             'imageURL' => $imageURL,
         ]);
@@ -84,9 +88,27 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $Userid, $Eventid)
     {
         //
+        $event = Event::find($Eventid);
+        if ($request->imageURL != "") {
+            $image = $request->imageURL; //base64 string
+            $file_path = 'event/{$Eventid}/' . rand() . time() . '.jpg';
+            Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
+
+            $event->imageURL = Storage::disk('s3')->url($file_path);
+        }
+
+        $event->name = $request->name;
+        $event->location = $request->location;
+        $event->organizer = $request->organizer;
+        $event->phoneNum = $request->phoneNumber;
+        $event->dateStart = $request->dateStart;
+        $event->dateEnd = $request->dateEnd;
+        $event->timeStart = $request->timeStart;
+        $event->timeEnd = $request->timeEnd;
+        $event->save();
     }
 
     /**
