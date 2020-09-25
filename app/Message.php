@@ -9,6 +9,10 @@ class Message extends Model
     //
     public function conversation()
     {
-        return $this->belongsTo('App\Conversation');
+        return $this->belongsTo('App\Conversation', 'conversationId');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'userId');
     }
 }

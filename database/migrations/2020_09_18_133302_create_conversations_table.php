@@ -16,6 +16,8 @@ class CreateConversationsTable extends Migration
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('userSendId');
+            $table->foreignId('userReceiveId');
         });
     }
 

@@ -34,4 +34,9 @@ class SendMessage implements ShouldBroadcast
     {
         return new Channel('easy-blood');
     }
+
+    public function broadcastAs()
+    {
+        return 'message';
+    }
 }
