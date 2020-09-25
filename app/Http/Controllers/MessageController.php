@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Console\Command;
 
 class MessageController extends Controller
 {
@@ -37,6 +38,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         //
+        event(new \App\Events\SendMessage($request->message ?: 'No Message :)'));
     }
 
     /**
