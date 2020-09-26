@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Message;
+use App\Conversation;
 
 class ConversationController extends Controller
 {
@@ -37,6 +39,32 @@ class ConversationController extends Controller
     public function store(Request $request)
     {
         //
+        $check = new Conversation;
+        $check = Conversation::where("userSendId", $request->userSendId)
+            ->where("userReceiveId", $request->userReceiveId)
+            ->first();
+        if ($check == null) {
+            $conversation = new Conversation;
+            $conversation->userSendId = $request->userSendId;
+            $conversation->userReceiveId = $request->userReceiveId;
+            $conversation->save();
+            $message = new Message;
+            $message->message = $request->message;
+            $message->userId = $request->userSendId;
+            $message->conversationID = $conversation->id;
+            $message->save();
+        } else {
+            $message = new Message;
+            $message->message = $request->message;
+            $message->userId = $request->userSendId;
+            $message->conversationID = $check->id;
+            $message->save();
+        }
+        // $conversation = new Conversation;
+        // $conversation->userSendId = $request->userSendId;
+        // $conversation->userReceiveId = $request->userReceiveId;
+        // $conversation->save();
+
     }
 
     /**

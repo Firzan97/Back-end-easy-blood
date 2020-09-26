@@ -2,11 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class Conversation extends Model
 {
     //
+    protected $collection = 'conversations';
+    // protected $primaryKey = 'id';
+    protected $connection = 'mongodb';
     public function messages()
     {
         return $this->hasMany("App/Message");

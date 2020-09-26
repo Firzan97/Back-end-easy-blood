@@ -40,3 +40,4 @@ Route::post('/userNotification', 'UserNotificationController@store');
 Route::get('/user/{id}/notification', 'UserNotificationController@show');
 Route::put('/notification/{id}', 'UserNotificationController@update');
 Route::post('/message', 'MessageController@store');
+Route::post('/conversation', 'ConversationController@store');
