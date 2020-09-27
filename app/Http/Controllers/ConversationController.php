@@ -40,10 +40,14 @@ class ConversationController extends Controller
     {
         //
         $check = new Conversation;
+        $check2 = new Conversation;
         $check = Conversation::where("userSendId", $request->userSendId)
             ->where("userReceiveId", $request->userReceiveId)
             ->first();
-        if ($check == null) {
+        $check2 = Conversation::where("userSendId", $request->userReceiveId)
+            ->where("userReceiveId", $request->userSendId)
+            ->first();
+        if ($check == null && $check2 == null) {
             $conversation = new Conversation;
             $conversation->userSendId = $request->userSendId;
             $conversation->userReceiveId = $request->userReceiveId;
