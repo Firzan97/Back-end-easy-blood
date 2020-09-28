@@ -16,8 +16,11 @@ class MessageController extends Controller
     public function index()
     {
         //
-        $message = Message::all();
-        return $message;
+        return Message::with('conversation')->get();
+    }
+    public function latestMessage($id)
+    {
+        return Message::where('conversationId', $id)->orderBy('created_at', 'desc')->first();
     }
 
     /**

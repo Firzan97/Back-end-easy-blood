@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration
             $table->string('message');
             $table->boolean('isRead');
             $table->foreignId('userId');
-            $table->foreignId('conversationID');
+            $table->foreignId('conversationId');
         });
     }
 

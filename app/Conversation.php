@@ -3,6 +3,7 @@
 namespace App;
 
 use Jenssegers\Mongodb\Eloquent\Model;
+use App\Message;
 
 class Conversation extends Model
 {
@@ -12,7 +13,7 @@ class Conversation extends Model
     protected $connection = 'mongodb';
     public function messages()
     {
-        return $this->hasMany("App/Message");
+        return $this->hasMany('App\Message');
     }
     public function userSend()
     {

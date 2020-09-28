@@ -110,6 +110,8 @@ class UserController extends Controller
             Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
 
             $user->imageURL = Storage::disk('s3')->url($file_path);
+        } else {
+            $user->imageURL = "https://easy-blood.s3-ap-southeast-1.amazonaws.com/loadProfileImage.png";
         }
 
 

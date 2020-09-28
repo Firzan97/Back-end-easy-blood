@@ -16,8 +16,7 @@ class ConversationController extends Controller
     public function index()
     {
         //
-        $conversation = Conversation::all();
-        return $conversation;
+        return Conversation::with('userReceive')->get();
     }
 
     /**
@@ -55,13 +54,13 @@ class ConversationController extends Controller
             $message = new Message;
             $message->message = $request->message;
             $message->userId = $request->userSendId;
-            $message->conversationID = $conversation->id;
+            $message->conversationId = $conversation->id;
             $message->save();
         } else {
             $message = new Message;
             $message->message = $request->message;
             $message->userId = $request->userSendId;
-            $message->conversationID = $check->id;
+            $message->conversationId = $check->id;
             $message->save();
         }
         // $conversation = new Conversation;
