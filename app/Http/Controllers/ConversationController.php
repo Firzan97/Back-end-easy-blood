@@ -13,10 +13,10 @@ class ConversationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
-        return Conversation::with('userReceive')->get();
+        return Conversation::where('userSendId', $id)->orWhere('userReceiveId', $id)->with('userReceive')->with('userSend')->get();
     }
 
     /**
@@ -38,6 +38,7 @@ class ConversationController extends Controller
     public function store(Request $request)
     {
         //
+        event(new \App\Events\SendMessage($request->message ?: 'No Message :)'));
         $check = new Conversation;
         $check2 = new Conversation;
         $check = Conversation::where("userSendId", $request->userSendId)
@@ -46,6 +47,12 @@ class ConversationController extends Controller
         $check2 = Conversation::where("userSendId", $request->userReceiveId)
             ->where("userReceiveId", $request->userSendId)
             ->first();
+        if ($check == null) {
+
+            $converId = $check2->id;
+        } else {
+            $converId = $check->id;
+        }
         if ($check == null && $check2 == null) {
             $conversation = new Conversation;
             $conversation->userSendId = $request->userSendId;
@@ -60,7 +67,7 @@ class ConversationController extends Controller
             $message = new Message;
             $message->message = $request->message;
             $message->userId = $request->userSendId;
-            $message->conversationId = $check->id;
+            $message->conversationId = $converId;
             $message->save();
         }
         // $conversation = new Conversation;
