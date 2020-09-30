@@ -19,6 +19,12 @@ class MessageController extends Controller
         //
         return Message::with('conversation')->get();
     }
+    public function unread($userId, $conversationId)
+    {
+        //
+        $message = Message::where('conversationId', $conversationId)->where('isRead', false)->where("userId", $userId)->get();
+        return count($message);
+    }
     public function latestMessage($id)
     {
         return Message::where('conversationId', $id)->orderBy('created_at', 'desc')->first();
@@ -53,7 +59,6 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         //
-        event(new \App\Events\SendMessage($request->message ?: 'No Message :)'));
     }
 
     /**
@@ -88,6 +93,13 @@ class MessageController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $messages = Message::where("conversationId", "$id")->get();
+        foreach ($messages as $message) {
+            if ($message->userId == $request->userId) {
+                $message->isRead = $request->isRead;
+            }
+            $message->save();
+        }
     }
 
     /**

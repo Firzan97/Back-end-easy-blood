@@ -61,11 +61,13 @@ class ConversationController extends Controller
             $message = new Message;
             $message->message = $request->message;
             $message->userId = $request->userSendId;
+            $message->isRead = $request->isRead;
             $message->conversationId = $conversation->id;
             $message->save();
         } else {
             $message = new Message;
             $message->message = $request->message;
+            $message->isRead = $request->isRead;
             $message->userId = $request->userSendId;
             $message->conversationId = $converId;
             $message->save();

@@ -41,6 +41,10 @@ Route::get('/user/{id}/notification', 'UserNotificationController@show');
 Route::put('/notification/{id}', 'UserNotificationController@update');
 Route::post('/message', 'MessageController@store');
 Route::get('/message', 'MessageController@index');
+Route::put('/message/{id}', 'MessageController@update');
+
+Route::get('/message/{userId}/unread/{conversationId}', 'MessageController@unread');
+
 Route::get('/conversationMessage/{user1}/{user2}', 'MessageController@conversationMessage');
 
 Route::get('/latestMessage/{id}', 'MessageController@latestMessage');
