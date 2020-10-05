@@ -31,7 +31,7 @@ class EventController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        //assign image 
         $image = $request->image;
         //base64 string
         $file_path = 'event/' . rand() . time() . '.jpg';
