@@ -39,7 +39,7 @@ return [
             'driver' => 'mongodb',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', 27017),
-            'dsn' => 'mongodb+srv://easyblood:easyblood@easybloodcluster.vlabo.mongodb.net/test',
+            'dsn' => 'mongodb://easyblood:easyblood@easybloodcluster-shard-00-00.vlabo.mongodb.net:27017,easybloodcluster-shard-00-01.vlabo.mongodb.net:27017,easybloodcluster-shard-00-02.vlabo.mongodb.net:27017/easyblood?ssl=true&replicaSet=atlas-10i9sv-shard-0&authSource=admin&retryWrites=true&w=majority',
             'database' => env('DB_DATABASE', 'easyblood'),
             'username' => env('DB_USERNAME', 'easyblood'),
             'password' => env('DB_PASSWORD', 'easyblood'),
