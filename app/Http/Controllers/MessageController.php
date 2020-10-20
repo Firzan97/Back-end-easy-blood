@@ -33,12 +33,14 @@ class MessageController extends Controller
     {
         $conversation1 = Conversation::where('userSendId', $user1)->Where('userReceiveId', $user2)->first();
         $conversation2 = Conversation::where('userSendId', $user2)->Where('userReceiveId', $user1)->first();
-        if ($conversation1 == null) {
-            $message = Message::where('conversationId', $conversation2->id)->get();
-        } else {
-            $message = Message::where('conversationId', $conversation1->id)->get();
+        if ($conversation1 == null && $conversation2 == null) { } else {
+            if ($conversation1 == null) {
+                $message = Message::where('conversationId', $conversation2->id)->get();
+            } else {
+                $message = Message::where('conversationId', $conversation1->id)->get();
+            }
+            return $message;
         }
-        return $message;
     }
     /**
      * Show the form for creating a new resource.

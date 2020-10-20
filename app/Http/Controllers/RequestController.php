@@ -7,15 +7,18 @@ use App\Request as Req;
 use App\User as User;
 use App\Http\Controllers\FactController;
 use App\Http\Controllers\UserController;
+use App\Traits\InferenceEngineTrait;
+
 
 class RequestController extends Controller
 {
+    use InferenceEngineTrait;
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     protected $UserController;
     public function __construct(UserController $UserController)
     {
@@ -46,6 +49,7 @@ class RequestController extends Controller
 
 
         $created = Req::create($request->all());
+        return $this->inferenceEngine($request->bloodType);
     }
 
     /**

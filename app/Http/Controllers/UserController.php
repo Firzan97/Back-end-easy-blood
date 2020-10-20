@@ -114,15 +114,21 @@ class UserController extends Controller
             $user->imageURL = "https://easy-blood.s3-ap-southeast-1.amazonaws.com/loadProfileImage.png";
         }
 
+        if ($request->type == "updateLocation") {
+            $user->latitude = $request->latitude;
+            $user->longitude = $request->longitude;
+            print("cinbei");
+        } else {
+            $user->latitude = $request->latitude;
+            $user->longitude = $request->longitude;
+            $user->height = $request->height;
+            $user->weight = $request->weight;
+            $user->phoneNumber = $request->phoneNumber;
+            $user->bloodType = $request->bloodType;
+            $user->gender = $request->gender;
+            $user->notificationToken = $request->notificationToken;
+        }
 
-        $user->latitude = $request->latitude;
-        $user->longitude = $request->longitude;
-        $user->height = $request->height;
-        $user->weight = $request->weight;
-        $user->phoneNumber = $request->phoneNumber;
-        $user->bloodType = $request->bloodType;
-        $user->gender = $request->gender;
-        $user->notificationToken = $request->notificationToken;
         $user->save();
         // return Storage::disk('s3')->url($file_path);
     }

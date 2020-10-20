@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Rule;
 use Illuminate\Http\Request;
 
-class FactController extends Controller
+class FactController extends RuleController
 {
 
     /**
