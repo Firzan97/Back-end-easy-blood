@@ -18,8 +18,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
-        return $users->load('events');
+        return  $users = User::all();
+        // return $users->load('events');
     }
 
     /**
