@@ -12,7 +12,7 @@ trait InferenceEngineTrait
     {
         $kf1 = $request->age;
         $kf2 = $request->gender;
-        // $kf3 = $request->latest_donation;
+        // $kf3 = $request->latest_donations;
         $kf4 = $request->bloodType;
         // $kf5 = $request->chronicDesease;
         $kf6 = $request->weight;
