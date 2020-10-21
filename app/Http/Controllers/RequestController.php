@@ -8,7 +8,7 @@ use App\User as User;
 use App\Http\Controllers\FactController;
 use App\Http\Controllers\UserController;
 use App\Traits\InferenceEngineTrait;
-
+use PDO;
 
 class RequestController extends Controller
 {
@@ -24,7 +24,10 @@ class RequestController extends Controller
     {
         $this->UserController = $UserController;
     }
-
+    public function findDonor($bloodType)
+    {
+        return $this->inferenceEngine($bloodType);
+    }
     public function index()
     {
         //
@@ -49,7 +52,6 @@ class RequestController extends Controller
 
 
         $created = Req::create($request->all());
-        return $this->inferenceEngine($request->bloodType);
     }
 
     /**
