@@ -122,4 +122,13 @@ class EventController extends Controller
         //
         Event::destroy($id);
     }
+
+    public function incomingEvent()
+    {
+        return Event::whereDate('dateStart', '>', Carbon::today()->toDateString());
+    }
+    public function todayEvent()
+    {
+        return Event::whereDate('dateStart', '=', Carbon::today()->toDateString());
+    }
 }

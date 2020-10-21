@@ -30,6 +30,9 @@ Route::get('/event', 'EventController@index');
 Route::put('/user/{Userid}/event/{Eventid}', 'EventController@update');
 Route::get('/user/{id}/event', 'EventController@userEvent');
 Route::delete('/event/{id}', 'EventController@destroy');
+Route::get('/todayEvent', 'EventController@todayEvent');
+Route::get('/incomingEvent', 'EventController@incomingEvent');
+
 
 Route::post('/request', 'RequestController@create');
 Route::get('/request', 'RequestController@index');
