@@ -18,8 +18,9 @@ class UserController extends Controller
     public function index()
     {
         //
-        return  $users = User::all();
+        return  $users = User::where('role', '!=', 'admin')->get();
         // return $users->load('events');
+
     }
 
     /**
@@ -119,6 +120,7 @@ class UserController extends Controller
             $user->longitude = $request->longitude;
             print("cinbei");
         } else {
+
             $user->latitude = $request->latitude;
             $user->longitude = $request->longitude;
             $user->height = $request->height;

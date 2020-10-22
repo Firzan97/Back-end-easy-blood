@@ -39,7 +39,7 @@ Route::get('/request', 'RequestController@index');
 Route::get('/user/{id}/request', 'RequestController@userRequest');
 Route::delete('/request/{id}', 'RequestController@destroy');
 
-Route::get('{bloodType}/findDonor', 'RequestController@findDonor');
+Route::get('/{bloodType}/findDonor', 'RequestController@findDonor');
 
 Route::post('/notification', 'NotificationController@sendNotification');
 Route::get('/notification', 'NotificationController@sendNotification');
