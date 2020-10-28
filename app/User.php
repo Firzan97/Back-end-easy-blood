@@ -97,4 +97,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Conversation');
     }
+    public function qualification()
+    {
+        return $this->hasOne('App\Qualification');
+    }
 }

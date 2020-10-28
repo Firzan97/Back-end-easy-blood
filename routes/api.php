@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
 Route::post('/login', 'UserController@login');
 
 Route::post('/user', 'UserController@create');
@@ -58,3 +61,7 @@ Route::get('/latestMessage/{id}', 'MessageController@latestMessage');
 
 Route::post('/conversation', 'ConversationController@store');
 Route::get('/conversation/{id}', 'ConversationController@index');
+
+Route::post('/{id}/qualification', 'QualificationController@store');
+Route::get('/{id}/qualification', 'QualificationController@index');
+Route::put('/{id}/qualification', 'QualificationController@update');
