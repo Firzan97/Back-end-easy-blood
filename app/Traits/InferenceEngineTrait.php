@@ -181,7 +181,7 @@ trait InferenceEngineTrait
                 $value = "true";
             }
 
-            if ($key == "You have no chronic desease" && $generatedFact["suitable ageblood is identical with requestor"] == true) {
+            if ($key == "You have no chronic desease" && $generatedFact["suitable ageblood is identical with requestor"] == "true") {
                 $value == "true";
             }
 
@@ -204,7 +204,7 @@ trait InferenceEngineTrait
         $knownfact = array();
         $generatedFact = array();
         foreach ($users as $user) {
-            $qualification = Qualification::where('user_id', '==', $user->id)->get();
+            $qualification = Qualification::where('user_id', $user->id)->get();
 
             $this->knowledgeBase($user, $qualification, $bloodType, $knownfact, $generatedFact);
             $b = $knownfact;

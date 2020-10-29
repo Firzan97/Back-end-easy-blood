@@ -63,5 +63,5 @@ Route::post('/conversation', 'ConversationController@store');
 Route::get('/conversation/{id}', 'ConversationController@index');
 
 Route::post('/{id}/qualification', 'QualificationController@store');
-Route::get('/{id}/qualification', 'QualificationController@index');
+Route::get('/{id}/qualification', 'QualificationController@show');
 Route::put('/{id}/qualification', 'QualificationController@update');

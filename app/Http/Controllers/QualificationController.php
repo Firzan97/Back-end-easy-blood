@@ -37,7 +37,12 @@ class QualificationController extends Controller
     public function store(Request $request, $id)
     {
         //
-        $qualification = new Qualification;
+        $test = Qualification::where("user_id", $id)->get();
+        if (count($test) < 1) {
+            $qualification = new Qualification;
+        } else {
+            $qualification = Qualification::where("user_id", $id)->get();
+        }
         $qualification->lastDonation = $request->lastDonation;
         $qualification->desease = $request->desease;
         $qualification->problem = $request->problem;
@@ -54,6 +59,9 @@ class QualificationController extends Controller
         // $qualification->datepierceCuppingAcupuntureTattoo = $request->datepierceCuppingAcupuntureTattoo;
         $qualification->takeAntiobiotic = $request->takeAntiobiotic;
         // $qualification->dateTakeAntibiotic = $request->dateTakeAntibiotic;
+        $qualification->surgical = $request->surgical;
+        $qualification->injury = $request->injury;
+        $qualification->transfussion = $request->transfussion;
         $qualification->CJD1 = $request->CJD1;
         $qualification->CJD2 = $request->CJD2;
         $qualification->CJD3 = $request->CJD3;
@@ -66,7 +74,15 @@ class QualificationController extends Controller
         $qualification->partnerCatagories = $request->partnerCatagories;
         $qualification->partnerHIVpositive = $request->partnerHIVpositive;
         $qualification->youOrSexPartnerHIVinfected = $request->youOrSexPartnerHIVinfected;
-        $qualification->user_id = $request->user_id;
+
+        $qualification->feelingWell = false;
+        $qualification->testBlood = false;
+        $qualification->dentalTreatment = false;
+        $qualification->takenAlcohol = false;
+        $qualification->menstruating = false;
+        $qualification->pregnant = false;
+        $qualification->breastfeed = false;
+        $qualification->user_id = $id;
         $qualification->save();
     }
 
@@ -79,6 +95,7 @@ class QualificationController extends Controller
     public function show($id)
     {
         //
+        return Qualification::where("user_id", $id)->first();
     }
 
     /**
@@ -102,6 +119,15 @@ class QualificationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $qualification = Qualification::where("user_id", $id)->first();
+        $qualification->feelingWell = $request->feelingWell;
+        $qualification->testBlood = $request->testBlood;
+        $qualification->dentalTreatment = $request->dentalTreatment;
+        $qualification->takenAlcohol = $request->takenAlcohol;
+        $qualification->menstruating = $request->menstruating;
+        $qualification->pregnant = $request->pregnant;
+        $qualification->breastfeed = $request->breastfeed;
+        $qualification->save();
     }
 
     /**
