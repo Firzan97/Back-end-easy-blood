@@ -41,7 +41,7 @@ class QualificationController extends Controller
         if (count($test) < 1) {
             $qualification = new Qualification;
         } else {
-            $qualification = Qualification::where("user_id", $id)->get();
+            $qualification = Qualification::where("user_id", $id)->first();
         }
         $qualification->lastDonation = $request->lastDonation;
         $qualification->desease = $request->desease;
