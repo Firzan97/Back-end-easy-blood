@@ -5,10 +5,22 @@
  */
 
 require('./bootstrap');
-import BootstrapVue from 'bootstrap-vue' //Importing
 
 window.Vue = require('vue');
+import Vue from 'vue'
+import Vuetify from 'vuetify';
+import router from "./router/index.js"
+import VueRouter from 'vue-router'
+
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+Vue.use(VueRouter)
+
+// Install BootstrapVue
 Vue.use(BootstrapVue)
+    // Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+Vue.use(Vuetify);
+// import 'vuetify/dist/vuetify.min.css'
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,4 +43,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    vuetify: new Vuetify(),
+        router ,
+
 });

@@ -35,3 +35,28 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/event', 'EventController@create');
+Route::get('/event', 'EventController@index');
+Route::put('/user/{Userid}/event/{Eventid}', 'EventController@update');
+Route::get('/user/{id}/event', 'EventController@userEvent');
+Route::delete('/event/{id}', 'EventController@destroy');
+Route::get('/todayEvent', 'EventController@todayEvent');
+Route::get('/incomingEvent', 'EventController@incomingEvent');
+
+Route::post('/user', 'UserController@create');
+Route::get('/user', 'UserController@index');
+Route::put('/user/{id}', 'UserController@update');
+Route::get('/user/{id}', 'UserController@show');
+Route::delete('/user/{id}', 'UserController@destroy');
