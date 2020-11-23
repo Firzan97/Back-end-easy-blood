@@ -60,3 +60,6 @@ Route::get('/user', 'UserController@index');
 Route::put('/user/{id}', 'UserController@update');
 Route::get('/user/{id}', 'UserController@show');
 Route::delete('/user/{id}', 'UserController@destroy');
+Route::get('{any}', function () {
+    return view('welcome');
+})->where('any', '.*');

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="eventTable">
         <v-simple-table>
             <template v-slot:default>
                 <thead class=" red darken-1">
@@ -53,18 +53,6 @@
                 </tbody>
             </template>
         </v-simple-table>
-        <v-banner single-line @click:icon="alert">
-            <v-icon slot="icon" color="warning" size="36">
-                mdi-wifi-strength-alert-outline
-            </v-icon>
-            Unable to verify your Internet connection
-
-            <template v-slot:actions>
-                <v-btn color="primary" text>
-                    Connecting Settings
-                </v-btn>
-            </template>
-        </v-banner>
     </div>
 </template>
 
@@ -93,9 +81,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.action {
-    margin: 10px;
-    box-shadow: 50x 4px grey;
-}
-</style>
+<style scoped></style>

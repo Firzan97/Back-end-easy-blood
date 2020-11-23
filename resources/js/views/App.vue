@@ -1,16 +1,11 @@
 <template>
-    <div>
-        <h1>Vue Router Demo App</h1>
-
-        <p>
-            <router-link :to="{ name: 'Event' }">Event</router-link> |
-        </p>
-
-        <div class="container">
-            <router-view></router-view>
-        </div>
-    </div>
+    <Navbar />
 </template>
 <script>
-    export default {}
+import Navbar from "../components/Navbar";
+export default {
+    components: {
+        Navbar
+    }
+};
 </script>
