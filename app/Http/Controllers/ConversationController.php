@@ -47,12 +47,7 @@ class ConversationController extends Controller
         $check2 = Conversation::where("userSendId", $request->userReceiveId)
             ->where("userReceiveId", $request->userSendId)
             ->first();
-        if ($check == null) {
 
-            $converId = $check2->id;
-        } else {
-            $converId = $check->id;
-        }
         if ($check == null && $check2 == null) {
             $conversation = new Conversation;
             $conversation->userSendId = $request->userSendId;
@@ -65,6 +60,12 @@ class ConversationController extends Controller
             $message->conversationId = $conversation->id;
             $message->save();
         } else {
+            if ($check == null) {
+
+                $converId = $check2->_id;
+            } else {
+                $converId = $check->_id;
+            }
             $message = new Message;
             $message->message = $request->message;
             $message->isRead = $request->isRead;

@@ -318,7 +318,7 @@ trait InferenceEngineTrait
     public function inferenceEngine($bloodType)
     {
         $eligibleDonor = array();
-        $users = User::all();
+        $users = User::where("role", "=", "user")->get();
         $count = 0;
         $knownfact = array();
         $generatedFact = array();

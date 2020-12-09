@@ -101,4 +101,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne('App\Qualification');
     }
+
+    public function bloodDonations()
+    {
+        return $this->hasMany("App\BloodDonation");
+    }
+    public function userAchievement()
+    {
+        return $this->hasMany("App\UserAchievement");
+    }
 }

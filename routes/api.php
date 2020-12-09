@@ -24,7 +24,16 @@ Route::post('/login', 'UserController@login');
 
 Route::post('/user', 'UserController@create');
 Route::get('/user', 'UserController@index');
+Route::get('/admin/{id}', 'UserController@getAdminData');
+Route::get('/admin', 'UserController@getAdmin');
+
+Route::put('/admin/{id}', 'UserController@updateAdmin');
+
 Route::put('/user/{id}', 'UserController@update');
+Route::put('/userName/{id}', 'UserController@updateName');
+Route::put('/user/{id}/role', 'UserController@updateRole');
+
+
 Route::get('/user/{id}', 'UserController@show');
 Route::delete('/user/{id}', 'UserController@destroy');
 
@@ -54,7 +63,7 @@ Route::put('/notification/{id}', 'UserNotificationController@update');
 
 Route::post('/message', 'MessageController@store');
 Route::get('/message', 'MessageController@index');
-Route::put('/message/{id}', 'MessageController@update');
+Route::put('/message', 'MessageController@update');
 Route::get('/message/{userId}/unread/{conversationId}', 'MessageController@unread');
 Route::get('/conversationMessage/{user1}/{user2}', 'MessageController@conversationMessage');
 Route::get('/latestMessage/{id}', 'MessageController@latestMessage');
@@ -65,3 +74,8 @@ Route::get('/conversation/{id}', 'ConversationController@index');
 Route::post('/{id}/qualification', 'QualificationController@store');
 Route::get('/{id}/qualification', 'QualificationController@show');
 Route::put('/{id}/qualification', 'QualificationController@update');
+Route::get('/{id}/qualification', 'QualificationController@latestDonation');
+
+
+Route::get('/achievement', 'AchievementController@index');
+Route::get('/achievement/{id}', 'AchievementController@show');

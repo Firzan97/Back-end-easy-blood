@@ -14,21 +14,26 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //use to fetch all message
     public function index()
     {
         //
         return Message::with('conversation')->get();
     }
+
+    //use to fetch unread message 
     public function unread($userId, $conversationId)
     {
         //
         $message = Message::where('conversationId', $conversationId)->where('isRead', false)->where("userId", $userId)->get();
         return count($message);
     }
+    //use to fetch the latest message between sender and receiver
     public function latestMessage($id)
     {
         return Message::where('conversationId', $id)->orderBy('created_at', 'desc')->first();
     }
+    //use to fetch all the message between sender and receiver 
     public function conversationMessage($user1, $user2)
     {
         $conversation1 = Conversation::where('userSendId', $user1)->Where('userReceiveId', $user2)->first();
@@ -92,16 +97,45 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    // use to make the unread message become read
+    public function update(Request $request)
     {
         //
-        $messages = Message::where("conversationId", "$id")->get();
-        foreach ($messages as $message) {
-            if ($message->userId == $request->userId) {
-                $message->isRead = $request->isRead;
+        $check = new Conversation;
+        $check2 = new Conversation;
+        $check = Conversation::where("userSendId", $request->userSendId)
+            ->where("userReceiveId", $request->userReceiveId)
+            ->first();
+        $check2 = Conversation::where("userSendId", $request->userReceiveId)
+            ->where("userReceiveId", $request->userSendId)
+            ->first();
+
+        if ($check == null && $check2 == null) { } else {
+            if ($check == null) {
+
+                $converId = $check2->_id;
+            } else {
+                $converId = $check->_id;
             }
-            $message->save();
+            $messages = Message::where("conversationId", "$converId")->get();
+            foreach ($messages as $message) {
+                if ($message->userId == $request->userId) {
+                    $message->isRead = $request->isRead;
+                }
+                $message->save();
+            }
         }
+
+
+
+        // $messages = Message::where("conversationId", "$id")->get();
+        // foreach ($messages as $message) {
+        //     if ($message->userId == $request->userId) {
+        //         $message->isRead = $request->isRead;
+        //     }
+        //     $message->save();
+        // }
     }
 
     /**

@@ -110,6 +110,7 @@ class EventController extends Controller
         $event->timeStart = $request->timeStart;
         $event->timeEnd = $request->timeEnd;
         $event->save();
+        return $event;
     }
 
     /**

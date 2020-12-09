@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Qualification;
-
+use Carbon\Carbon;
+use DateTime;
 
 class QualificationController extends Controller
 {
@@ -96,6 +97,17 @@ class QualificationController extends Controller
     {
         //
         return Qualification::where("user_id", $id)->first();
+    }
+    public function latestDonation($id)
+    {
+
+        //
+        $mytime = Carbon::now();
+        $qualification =  Qualification::where("user_id", $id)->first();
+        $lastDonate = $qualification->lastDonation;
+        $lastDonate = datetime::createfromformat('Y-m-d H:i:s.u', $lastDonate);
+        $datenow = new DateTime(date('Y-m-d H:i:s.u'));
+        return $days  = $datenow->diff($lastDonate)->format('%a');
     }
 
     /**

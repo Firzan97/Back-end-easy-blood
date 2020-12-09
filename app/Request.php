@@ -17,4 +17,8 @@ class Request extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+    public function bloodDonation()
+    {
+        return $this->hasOne('App\BloodDonation');
+    }
 }
