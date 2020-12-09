@@ -35,6 +35,7 @@ class BloodDonationController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**

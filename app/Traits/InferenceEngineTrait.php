@@ -86,7 +86,7 @@ trait InferenceEngineTrait
             $generatedFact[$gf1] = "false";
         }
         //Rule2
-        if ($kf2 == "Male") {
+        if ($kf2 == "male") {
             $gf2 = "your gender is male";
             $generatedFact[$gf2] = "false";
         } else {
@@ -169,7 +169,7 @@ trait InferenceEngineTrait
                 $value = "true";
             }
             //Rule2
-            if (array_key_exists("Male", $knownfact) || array_key_exists("Female", $knownfact)) {
+            if (array_key_exists("male", $knownfact) || array_key_exists("female", $knownfact)) {
                 if ($key == "Male") {
                     $value = "true";
                 } else {
@@ -340,6 +340,7 @@ trait InferenceEngineTrait
                 }
             }
             //if there are no false value, it will indicate that all rules are matched and that user is selected
+
             if ($count == 0) {
                 array_push($eligibleDonor, $user);
             }

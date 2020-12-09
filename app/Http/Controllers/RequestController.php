@@ -40,7 +40,20 @@ class RequestController extends Controller
         return Req::where('user_id', $id)
             ->get();
     }
+    public function saveDonor(Request $request)
+    {
+        $req = Req::find($request->requestId);
 
+        $req->donor_id = $request->donorId;
+
+        $req->save();
+        return $req;
+    }
+    public function lifeSaved($id)
+    {
+        $req = Req::with("user")->where("donor_id", "=", $id)->get();
+        return $req;
+    }
     /**
      * Show the form for creating a new resource.
      *

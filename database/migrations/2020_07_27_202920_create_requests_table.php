@@ -19,6 +19,7 @@ class CreateRequestsTable extends Migration
             $table->string("bloodType");
             $table->string("reason");
             $table->foreignId("user_id");
+            $table->foreignId("donor_id");
         });
     }
 

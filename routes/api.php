@@ -50,7 +50,7 @@ Route::post('/request', 'RequestController@create');
 Route::get('/request', 'RequestController@index');
 Route::get('/user/{id}/request', 'RequestController@userRequest');
 Route::delete('/request/{id}', 'RequestController@destroy');
-
+Route::put('/request/donor', 'RequestController@saveDonor');
 Route::get('/{bloodType}/findDonor', 'RequestController@findDonor');
 
 Route::post('/notification', 'NotificationController@sendNotification');
@@ -79,3 +79,10 @@ Route::get('/{id}/qualification', 'QualificationController@latestDonation');
 
 Route::get('/achievement', 'AchievementController@index');
 Route::get('/achievement/{id}', 'AchievementController@show');
+Route::post('/achievement/{id}', 'AchievementController@store');
+Route::put('/achievement/{id}', 'AchievementController@update');
+Route::delete('/achievement/{id}', 'AchievementController@destroy');
+
+
+Route::post('/userAchievement/{id}', 'UserAchievementController@store');
+Route::get('/{id}/lifeSaved', 'RequestController@lifeSaved');
