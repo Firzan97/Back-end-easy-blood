@@ -18,6 +18,7 @@ class CreateAchievementsTable extends Migration
             $table->timestamps();
             $table->string("type");
             $table->string("description");
+            $table->string("imageURL");
         });
     }
 

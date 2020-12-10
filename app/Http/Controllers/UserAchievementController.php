@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UserAchievement;
 use Illuminate\Http\Request;
 
 class UserAchievementController extends Controller
@@ -32,9 +33,14 @@ class UserAchievementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         //
+
+        $achievement = new UserAchievement();
+        $achievement->user_id = $id;
+        $achievement->achievement_id = $request->achievement_id;
+        $achievement->save();
     }
 
     /**
@@ -46,6 +52,8 @@ class UserAchievementController extends Controller
     public function show($id)
     {
         //
+        $achievement = UserAchievement::where("user_id", "=", $id)->get();
+        return $achievement;
     }
 
     /**

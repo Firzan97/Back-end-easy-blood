@@ -48,7 +48,9 @@ Route::get('/incomingEvent', 'EventController@incomingEvent');
 
 Route::post('/request', 'RequestController@create');
 Route::get('/request', 'RequestController@index');
-Route::get('/user/{id}/request', 'RequestController@userRequest');
+Route::get('/user/{id}/request', 'RequestController@AcceptedRequest');
+
+Route::get('/user/{id}/totalRequest', 'RequestController@userRequest');
 Route::delete('/request/{id}', 'RequestController@destroy');
 Route::put('/request/donor', 'RequestController@saveDonor');
 Route::get('/{bloodType}/findDonor', 'RequestController@findDonor');
@@ -85,4 +87,6 @@ Route::delete('/achievement/{id}', 'AchievementController@destroy');
 
 
 Route::post('/userAchievement/{id}', 'UserAchievementController@store');
+Route::get('/userAchievement/{id}', 'UserAchievementController@show');
+
 Route::get('/{id}/lifeSaved', 'RequestController@lifeSaved');

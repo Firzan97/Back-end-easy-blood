@@ -31,22 +31,25 @@ class RequestController extends Controller
     public function index()
     {
         //
-        return Req::with('user')->get();
+        return Req::where("donor_id", null)->with('user')->get();
+    }
+    public function AcceptedRequest($id)
+    {
+        return Req::where("donor_id", $id)->with('user')->get();
     }
 
     public function userRequest($id)
     {
         //
-        return Req::where('user_id', $id)
-            ->get();
+        return Req::where('donor_id', $id)
+            ->count();
     }
     public function saveDonor(Request $request)
     {
         $req = Req::find($request->requestId);
-
         $req->donor_id = $request->donorId;
-
         $req->save();
+        // return Req::where("donor_id", "=", $request->donorId)->count();
         return $req;
     }
     public function lifeSaved($id)
