@@ -49,11 +49,13 @@ Route::get('/incomingEvent', 'EventController@incomingEvent');
 Route::post('/request', 'RequestController@create');
 Route::get('/request', 'RequestController@index');
 Route::get('/user/{id}/request', 'RequestController@AcceptedRequest');
-
 Route::get('/user/{id}/totalRequest', 'RequestController@userRequest');
 Route::delete('/request/{id}', 'RequestController@destroy');
 Route::put('/request/donor', 'RequestController@saveDonor');
 Route::get('/{bloodType}/findDonor', 'RequestController@findDonor');
+
+Route::get('/leaderBoard', 'RequestController@leaderboard');
+
 
 Route::post('/notification', 'NotificationController@sendNotification');
 Route::get('/notification', 'NotificationController@sendNotification');

@@ -9,6 +9,7 @@ use App\Http\Controllers\FactController;
 use App\Http\Controllers\UserController;
 use App\Traits\InferenceEngineTrait;
 use PDO;
+use Illuminate\Support\Facades\DB;
 
 class RequestController extends Controller
 {
@@ -51,6 +52,25 @@ class RequestController extends Controller
         $req->save();
         // return Req::where("donor_id", "=", $request->donorId)->count();
         return $req;
+    }
+    public function leaderboard()
+    {
+        $array1 = array();
+        $req = DB::Table("requests")->distinct('donor_id')->where('donor_id', '!=', null)->get();
+        foreach ($req as $a) {
+            $number = $req2 = Req::where("donor_id", $a)->count();
+            $user = User::find($a);
+            $data = ([
+                'donor_id' => $a,
+                'count' => $number,
+                'name' => $user->username,
+                'imageURL' => $user->imageURL
+            ]);
+            array_push($array1, $data);
+            $array1;
+        }
+        return $array1;
+        return $req = Req::with("user")->where("donor_id", "!=", null)->get();
     }
     public function lifeSaved($id)
     {
