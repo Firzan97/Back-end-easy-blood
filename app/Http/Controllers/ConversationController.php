@@ -122,6 +122,6 @@ class ConversationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //   //
     }
 }
