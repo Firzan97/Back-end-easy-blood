@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./resources/js/app.js":
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -104,7 +115,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'C:\\Users\\Firza\\Desktop\\easyblood\\resources\\js\\app.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+__webpack_require__(/*! C:\Users\Firza\Desktop\easyblood\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Firza\Desktop\easyblood\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
