@@ -1,2 +1,0 @@
-{"presets": [ ["env", { "targets": { "uglify": false } }] ]}
-
