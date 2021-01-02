@@ -37,7 +37,7 @@ class NotificationController extends Controller
 
         $fcmNotification = [
             //'registration_ids' => $tokenList, //multple token array
-            'to'        => $token,
+            'registration_ids'        => $token,
             'notification' => $notification,
             'priority' => "high",
 
