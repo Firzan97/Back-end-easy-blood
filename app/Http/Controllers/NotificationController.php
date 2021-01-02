@@ -79,11 +79,11 @@ class NotificationController extends Controller
             // 'sound' => '/images/bloodMarker.png'
         ];
 
-        $extraNotificationData = ["message" => $notification, "moredata" => 'dd'];
+        $extraNotificationData = ["message" => $notification, "moredata" => 'dd', "click_action" => "FLUTTER_NOTIFICATION_CLICK"];
 
         $fcmNotification = [
             //'registration_ids' => $tokenList, //multple token array
-            'to'        => $token,
+            'registration_ids'        => $token,
             'notification' => $notification,
             'priority' => "high",
 
