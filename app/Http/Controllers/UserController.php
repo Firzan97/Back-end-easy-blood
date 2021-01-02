@@ -139,14 +139,12 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-        if ($request->image != "") {
+        if ($request->image != "default image") {
             $image = $request->image; //base64 string
             $file_path = 'profile/{$id}/' . rand() . time() . '.jpg';
             Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
 
             $user->imageURL = Storage::disk('s3')->url($file_path);
-        } else {
-            $user->imageURL = "https://easy-blood.s3-ap-southeast-1.amazonaws.com/loadProfileImage.png";
         }
 
         if ($request->type == "updateLocation") {
@@ -154,6 +152,7 @@ class UserController extends Controller
             $user->longitude = $request->longitude;
             print("cinbei");
         } else {
+            $user->username = $request->username;
             $user->latitude = $request->latitude;
             $user->longitude = $request->longitude;
             $user->height = $request->height;

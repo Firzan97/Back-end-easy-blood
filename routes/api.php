@@ -58,6 +58,7 @@ Route::get('/leaderBoard', 'RequestController@leaderboard');
 
 
 Route::post('/notification', 'NotificationController@sendNotification');
+Route::post('/requestNotification', 'NotificationController@requestNotification');
 Route::get('/notification', 'NotificationController@sendNotification');
 Route::put('/user/{id}/notification', 'NotificationController@update');
 

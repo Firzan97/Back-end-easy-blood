@@ -1,5 +1,6 @@
 <?php
 
+use App\Achievement;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,12 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         //
         $this->call([
-            UserSeeder::class,
-            EventSeeder::class,
-            CommentSeeder::class,
-            RuleSeeder::class,
-            RequestSeeder::class,
-            DonationSeeder::class,
+            Achievement::class,
+            Notification::class,
+
 
         ]);
     }
