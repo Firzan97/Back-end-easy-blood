@@ -55,6 +55,7 @@ class RequestController extends Controller
     }
     public function leaderboard()
     {
+        $highest = 0;
         $array1 = array();
         $req = DB::Table("requests")->distinct('donor_id')->where('donor_id', '!=', null)->get();
         foreach ($req as $a) {
@@ -66,11 +67,17 @@ class RequestController extends Controller
                 'name' => $user->username,
                 'imageURL' => $user->imageURL
             ]);
-            array_push($array1, $data);
-            $array1;
+            if ($highest < $number) {
+                $highest = $number;
+                array_unshift($array1, $data);
+            } else {
+                array_push($array1, $data);
+            }
         }
-        return $array1;
-        return $req = Req::with("user")->where("donor_id", "!=", null)->get();
+        return   $array1;
+
+        // return $array1;
+        // return $req = Req::with("user")->where("donor_id", "!=", null)->get();
     }
     public function lifeSaved($id)
     {
