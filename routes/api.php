@@ -56,7 +56,7 @@ Route::get('/{bloodType}/findDonor', 'RequestController@findDonor');
 
 Route::get('/leaderBoard', 'RequestController@leaderboard');
 
-
+Route::post('/confirmDonationNotification', 'NotificationController@confirmDonationNotification');
 Route::post('/notification', 'NotificationController@sendNotification');
 Route::post('/requestNotification', 'NotificationController@requestNotification');
 Route::get('/notification', 'NotificationController@sendNotification');

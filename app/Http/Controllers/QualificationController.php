@@ -105,9 +105,13 @@ class QualificationController extends Controller
         $mytime = Carbon::now();
         $qualification =  Qualification::where("user_id", $id)->first();
         $lastDonate = $qualification->lastDonation;
-        $lastDonate = datetime::createfromformat('Y-m-d H:i:s.u', $lastDonate);
-        $datenow = new DateTime(date('Y-m-d H:i:s.u'));
-        return $days  = $datenow->diff($lastDonate)->format('%a');
+        if ($qualification->lastDonation != null) {
+            $lastDonate = datetime::createfromformat('Y-m-d H:i:s.u', $lastDonate);
+            $datenow = new DateTime(date('Y-m-d H:i:s.u'));
+            return $days  = $datenow->diff($lastDonate)->format('%a');
+        } else {
+            return "never";
+        }
     }
 
     /**

@@ -151,6 +151,9 @@ class UserController extends Controller
             $user->latitude = $request->latitude;
             $user->longitude = $request->longitude;
             print("cinbei");
+        }
+        if ($request->type == "update status") {
+            $user->isOnline = $request->isOnline;
         } else {
             $user->username = $request->username;
             $user->latitude = $request->latitude;

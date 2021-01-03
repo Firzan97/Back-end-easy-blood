@@ -14,10 +14,17 @@ trait InferenceEngineTrait
         $kf1 = $request->age;
         $kf2 = $request->gender;
         //calculate total day start from the date o flatest donation until today
-        $datenow = date("Y-m-d h:i:s.u");
-        $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i.u', $datenow);
-        $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i.u', $qualification->lastDonation);
-        $lastDonationDuration = $to->diffInDays($from);
+        if ($qualification->lastDonation != null) {
+            $datenow = date("Y-m-d h:i:s.u");
+            $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i.u', $datenow);
+            $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i.u', $qualification->lastDonation);
+            $lastDonationDuration = $to->diffInDays($from);
+        } else {
+            $lastDonationDuration = "never";
+        }
+
+
+
         ////
         $kf3 =  $lastDonationDuration;
         $kf4 = $request->bloodType;
@@ -43,6 +50,8 @@ trait InferenceEngineTrait
         $kf24 =  $qualification->beautyInjection;
         $kf25 =  $qualification->misscariage;
         $kf26 =  $qualification->breastfeed;
+        $kf27 =  $qualification->pregnant;
+
         $gf1 = "";
         $gf2 = "";
         $gf3 = "";
@@ -78,6 +87,9 @@ trait InferenceEngineTrait
         $knownfact[$kf23] = "false";
         $knownfact[$kf24] = "false";
         $knownfact[$kf25] = "false";
+        $knownfact[$kf26] = "false";
+        $knownfact[$kf27] = "false";
+
 
 
         //Rule1
@@ -86,7 +98,7 @@ trait InferenceEngineTrait
             $generatedFact[$gf1] = "false";
         }
         //Rule2
-        if ($kf2 == "male") {
+        if ($kf2 == "Male") {
             $gf2 = "your gender is male";
             $generatedFact[$gf2] = "false";
         } else {
@@ -94,7 +106,7 @@ trait InferenceEngineTrait
             $generatedFact[$gf2] = "false";
         }
         //Rule3
-        if ($kf3 > 90) {
+        if ($kf3 > 90 || $kf3 == "never") {
             $gf3 = "blood already replenish";
             $generatedFact[$gf3] = "false";
         }
@@ -135,12 +147,12 @@ trait InferenceEngineTrait
             $generatedFact[$gf10] = "false";
         }
         //Rule10
-        if ($gf2 = "your gender is male") {
+        if ($gf2 == "your gender is male") {
             $gf11 = "male can donate";
             $generatedFact[$gf11] = "false";
         } else {
             if ($kf25 == "have no misscariage") {
-                if ($kf25 == "not pregnant") {
+                if ($kf27 == "not pregnant") {
                     if ($kf26  == "not breastfeeding") {
                         $gf11 = "female can donate";
                         $generatedFact[$gf11] = "false";
@@ -169,7 +181,7 @@ trait InferenceEngineTrait
                 $value = "true";
             }
             //Rule2
-            if (array_key_exists("male", $knownfact) || array_key_exists("female", $knownfact)) {
+            if (array_key_exists("Male", $knownfact) || array_key_exists("Female", $knownfact)) {
                 if ($key == "Male") {
                     $value = "true";
                 } else {
@@ -263,6 +275,7 @@ trait InferenceEngineTrait
             if (array_key_exists("your gender is female", $generatedFact)) {
                 if (array_key_exists("have no misscariage", $knownfact)) {
                     if (array_key_exists("not pregnant", $knownfact)) {
+
                         if (array_key_exists("not breastfeeding", $knownfact)) {
                             $knownfact["have no misscariage"] = "true";
                             $knownfact["not pregnant"] = "true";
@@ -312,6 +325,7 @@ trait InferenceEngineTrait
                 }
             }
         }
+        return $generatedFact;
     }
 
 
@@ -331,6 +345,7 @@ trait InferenceEngineTrait
             //check if there are rules that are not matching
             foreach ($generatedFact as $key => $value) {
                 if ($value == "false") {
+                    print $key;
                     $count++;
                 }
             }
@@ -340,7 +355,7 @@ trait InferenceEngineTrait
                 }
             }
             //if there are no false value, it will indicate that all rules are matched and that user is selected
-
+            print $count . " ";
             if ($count == 0) {
                 array_push($eligibleDonor, $user);
             }
