@@ -345,7 +345,6 @@ trait InferenceEngineTrait
             //check if there are rules that are not matching
             foreach ($generatedFact as $key => $value) {
                 if ($value == "false") {
-                    print $key;
                     $count++;
                 }
             }
@@ -355,7 +354,6 @@ trait InferenceEngineTrait
                 }
             }
             //if there are no false value, it will indicate that all rules are matched and that user is selected
-            print $count . " ";
             if ($count == 0) {
                 array_push($eligibleDonor, $user);
             }
