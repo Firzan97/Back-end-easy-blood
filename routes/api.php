@@ -29,6 +29,7 @@ Route::get('/admin', 'UserController@getAdmin');
 
 Route::put('/admin/{id}', 'UserController@updateAdmin');
 
+Route::put('/user/{id}/updatePresence','UserController@updatePresence');
 Route::put('/user/{id}', 'UserController@update');
 Route::put('/userName/{id}', 'UserController@updateName');
 Route::put('/user/{id}/role', 'UserController@updateRole');

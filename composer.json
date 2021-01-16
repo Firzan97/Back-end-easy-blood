@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "mongodb/mongodb": "^1.7",
         "nesbot/carbon": "^2.41",
         "pusher/pusher-php-server": "~4.0",
         "tymon/jwt-auth": "^1.0.0-beta.3@dev"
