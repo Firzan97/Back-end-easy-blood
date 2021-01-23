@@ -152,8 +152,10 @@ class QualificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteQualification($id)
     {
         //
+        $qualification = Qualification::where("user_id",$id)->first();
+        $qualification->delete();
     }
 }

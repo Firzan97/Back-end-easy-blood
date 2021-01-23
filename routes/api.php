@@ -49,11 +49,13 @@ Route::get('/incomingEvent', 'EventController@incomingEvent');
 
 Route::post('/request', 'RequestController@create');
 Route::get('/request', 'RequestController@index');
+Route::get('/totalRequest/{id}','RequestController@totalRequest');
 Route::get('/user/{id}/request', 'RequestController@AcceptedRequest');
 Route::get('/user/{id}/totalRequest', 'RequestController@userRequest');
 Route::delete('/request/{id}', 'RequestController@destroy');
 Route::put('/request/donor', 'RequestController@saveDonor');
 Route::get('/{bloodType}/findDonor', 'RequestController@findDonor');
+Route::get('/allAcceptedrequest', 'RequestController@AllAcceptedRequest');
 
 Route::get('/leaderBoard', 'RequestController@leaderboard');
 
@@ -81,6 +83,7 @@ Route::post('/{id}/qualification', 'QualificationController@store');
 Route::get('/{id}/qualification', 'QualificationController@show');
 Route::put('/{id}/qualification', 'QualificationController@update');
 Route::get('/{id}/qualification', 'QualificationController@latestDonation');
+Route::delete('/{id}/qualification', 'QualificationController@deleteQualification');
 
 
 Route::get('/achievement', 'AchievementController@index');
@@ -94,3 +97,8 @@ Route::post('/userAchievement/{id}', 'UserAchievementController@store');
 Route::get('/userAchievement/{id}', 'UserAchievementController@show');
 
 Route::get('/{id}/lifeSaved', 'RequestController@lifeSaved');
+
+//adding request confirmation
+Route::post('/confirmation', 'ConfirmationController@store');
+Route::get('/confirmation/{id}', 'ConfirmationController@index');
+Route::put('/confirmation/{id}', 'ConfirmationController@confirmDonation');

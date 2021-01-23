@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Request as Req;
 use App\User as User;
+use App\Confirmation;
 use App\Http\Controllers\FactController;
 use App\Http\Controllers\UserController;
 use App\Traits\InferenceEngineTrait;
@@ -34,11 +35,17 @@ class RequestController extends Controller
         //
         return Req::where("donor_id", null)->with('user')->get();
     }
+    public function totalRequest($id){
+        return Req::where("user_id",$id)->get();
+    }
     public function AcceptedRequest($id)
     {
-        return Req::where("donor_id", $id)->with('user')->get();
+        return Confirmation::where("user_id", $id)->where("status",true)->with('user')->get();
     }
-
+    public function AllAcceptedRequest()
+    {
+        return Req::where("donor_id", '!=', null)->with('user','donor')->get();
+    }
     public function userRequest($id)
     {
         //
@@ -47,7 +54,7 @@ class RequestController extends Controller
     }
     public function saveDonor(Request $request)
     {
-        $req = Req::find($request->requestId);
+      $req = Req::find($request->requestId);
         $req->donor_id = $request->donorId;
         $req->save();
         // return Req::where("donor_id", "=", $request->donorId)->count();

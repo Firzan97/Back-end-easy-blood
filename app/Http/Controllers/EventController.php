@@ -17,7 +17,7 @@ class EventController extends Controller
     public function index()
     {
         $datenow = date("Y-m-d h:i:s.u");
-        return Event::where('dateStart', '<=', $datenow)->get();
+        return Event::where('dateStart', '>=', $datenow)->get();
     }
     public function userEvent($id)
     {

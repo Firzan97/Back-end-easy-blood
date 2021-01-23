@@ -109,5 +109,8 @@ class User extends Authenticatable implements JWTSubject
     public function userAchievement()
     {
         return $this->hasMany("App\UserAchievement");
+    }public function confirmation()
+    {
+        return $this->hasMany('App\Confirmation');
     }
 }

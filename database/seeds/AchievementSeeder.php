@@ -35,11 +35,11 @@ class AchievementSeeder extends Seeder
             //     'description' => 'Congratulation! You have donated the blood 15 times which is equivalent to saving 45 lives!',
             //     'imageURL' => "assets/images/superMan.png",
             // ],
-            // [
-            //     'type' => 'Universe Saver',
-            //     'description' => 'Congratulation! You have donated the blood 30 times which is equivalent to saving 90 lives!',
-            //     'imageURL' => "assets/images/univerSaver.png",
-            // ]
+            [
+                'type' => 'Universe Saver',
+                'description' => 'Congratulation! You have donated the blood 30 times which is equivalent to saving 90 lives!',
+                'imageURL' => "assets/images/univerSaver.png",
+            ]
         );
     }
 }

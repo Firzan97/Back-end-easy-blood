@@ -25,4 +25,8 @@ class Request extends Model
     {
         return $this->hasOne('App\BloodDonation');
     }
+    public function confirmation()
+    {
+        return $this->hasOne('App\Confirmation');
+    }
 }
